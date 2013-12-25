@@ -1,0 +1,65 @@
+// ----------------------------------------
+//                  CONFIG
+// ----------------------------------------
+
+//  The base width of your design (don't forget the "px", "rem" or "em" unit !) :
+$baseWidth: 10em;
+
+//  Gutter width (don't forget the "px" or "em" unit !) :
+$gutterWidth: 2.5rem;
+
+//  How much columns ? (just a number, no units units) :
+$colAmount: 12;
+
+// ----------------------------------------
+//               HOW TO USE ?
+// ----------------------------------------
+//      1.  Include this file at the
+//          beginning of your main
+//          design file using the SASS
+//          syntax.
+//          ex : @import "responsiveGridz";
+//      2.  If your design has a fix
+//          max-width, use the $baseWidth
+//          var to set the width of your
+//          main container.
+//          ex : body{ width: $baseWidth; }
+//      3.  Use the grids_columns() and
+//          gridz_gutter() functions to set
+//          flexible widths and margins
+//          to your box elements.
+//
+//          - gridz_columns( $cols, $parent )
+//          - gridz_gutter( $parent )
+//          -------------------------------
+//          $cols = amount of columns the 
+//                  element has to take
+//          $parent = amount of columns of
+//                    the parent element
+//
+//      4.  Add media queries on your
+//          main-container
+//      5.  Enjoy the flexible gridz on your
+//          child-elements !
+
+
+
+
+// ----------------------------------------
+//          GRIDZ MAGIC FUNCTIONS
+// ----------------------------------------
+//        Feel free to add magic if
+//       you have some great powers !
+// ----------------------------------------
+
+// Données calculées en fonction des variables
+$column_width: ($baseWidth - (($colAmount - 1) * $gutterWidth))/$colAmount;
+//fonctions de calcul
+@function gridz_columns($box_Columns,$parent_Columns){
+    @if $box_Columns == 0 { @return 0 }
+    @return percentage( ( ( $box_Columns * $column_width ) + ( ( $box_Columns - 1 ) * $gutterWidth ) ) / ( ( $parent_Columns * $column_width ) + ( ( $parent_Columns - 1 ) * $gutterWidth ) ) );
+}
+@function gridz_gutter($parent_Col){
+    @if $parent_Col == 0 { @return 0 }
+    @return percentage($gutterWidth / ( ( $parent_Col * $column_width ) + ( ( $parent_Col - 1 ) * $gutterWidth ) ) );
+}
