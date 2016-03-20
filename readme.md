@@ -1,5 +1,7 @@
 #ResponsiveGridz
 
+> **This is an old repository**. The project is being used and enhanced in the [white-sass](https://github.com/whiteCube/white-sass) library, made by WhiteCube (Belgian digital agency I created).
+
 ##How to use
 
 1.  Include this file at the beginning of your main design file using the SASS syntax.
